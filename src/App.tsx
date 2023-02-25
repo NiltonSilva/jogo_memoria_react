@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import InfoItem from "./components/InfoItem/Index";
 import { GridItemType } from "./types/GridItemType";
 import { items } from "./data/items";
+import GridItem from "./components/GridItem";
 
 export default function App() {
   const [playing, setPlaying] = useState<boolean>(false);
@@ -53,6 +54,8 @@ export default function App() {
     setPlaying(true);
   };
 
+  const handleItemClick = (index: number) => {};
+
   return (
     <C.Container>
       <C.Info>
@@ -69,7 +72,17 @@ export default function App() {
           onClick={resetAndCreateGrid}
         />
       </C.Info>
-      <C.GridArea>...</C.GridArea>
+      <C.GridArea>
+        <C.Grid>
+          {gridItems.map((item, index) => (
+            <GridItem
+              key={index}
+              item={item}
+              onClick={() => handleItemClick(index)}
+            />
+          ))}
+        </C.Grid>
+      </C.GridArea>
     </C.Container>
   );
 }
